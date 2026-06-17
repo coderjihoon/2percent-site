@@ -83,46 +83,53 @@ export default function SiteHeader() {
             <NavLinks className="hidden items-center gap-8 text-sm md:flex" />
 
             <button
-            type="button"
-            className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span
-              className={`block h-px w-5 bg-foreground transition-transform ${
-                menuOpen ? "translate-y-[5px] rotate-45" : ""
+              type="button"
+              className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              <span
+                className={`block h-px w-5 bg-foreground transition-transform duration-300 ${
+                  menuOpen ? "translate-y-[5px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`block h-px w-5 bg-foreground transition-opacity duration-300 ${
+                  menuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`block h-px w-5 bg-foreground transition-transform duration-300 ${
+                  menuOpen ? "-translate-y-[5px] -rotate-45" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="mobile-menu"
+          className={`mobile-menu grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
+            menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+          aria-hidden={!menuOpen}
+        >
+          <div className="overflow-hidden">
+            <div
+              className={`border-t border-border px-6 pb-8 pt-6 transition-opacity duration-300 ${
+                menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
               }`}
-            />
-            <span
-              className={`block h-px w-5 bg-foreground transition-opacity ${
-                menuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`block h-px w-5 bg-foreground transition-transform ${
-                menuOpen ? "-translate-y-[5px] -rotate-45" : ""
-              }`}
-            />
-          </button>
+            >
+              <NavLinks
+                className="flex flex-col gap-8 text-lg"
+                onNavigate={() => setMenuOpen(false)}
+              />
+            </div>
           </div>
         </div>
       </header>
-
-      <div
-        className={`fixed inset-0 z-40 bg-background transition-opacity duration-300 md:hidden ${
-          menuOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-      >
-        <div className="flex h-full flex-col items-center justify-center">
-          <NavLinks
-            className="flex flex-col items-center gap-10 text-lg"
-            onNavigate={() => setMenuOpen(false)}
-          />
-        </div>
-      </div>
 
       <div className="h-16 md:h-20" aria-hidden="true" />
     </>

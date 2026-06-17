@@ -39,37 +39,27 @@ function CompactProjectCover({
   priority,
 }: Omit<ProjectCoverProps, "compact">) {
   return (
-    <article className="group relative block overflow-hidden bg-surface">
+    <article className="group relative flex items-stretch overflow-hidden border-b border-border bg-surface">
       <Link
         href={`/${project.slug}`}
         aria-label={`${project.title}, ${project.year}`}
         className="absolute inset-0 z-10"
       />
-      <div className="relative aspect-[16/10] w-full">
+      <div className="flex w-1/3 min-w-0 flex-col justify-center px-4 py-5 sm:px-6 md:py-6">
+        <div className="text-sm font-medium transition-colors group-hover:text-accent md:text-base">
+          {project.title}
+        </div>
+        <div className="mt-1 text-xs text-accent md:text-sm">{project.year}</div>
+      </div>
+      <div className="relative aspect-[4/3] w-2/3 flex-shrink-0 md:aspect-[16/10]">
         <Image
           src={project.cover.src}
           alt={project.cover.alt ?? project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          sizes={
-            sizes ?? "(max-width: 540px) 100vw, (max-width: 768px) 50vw, 50vw"
-          }
+          sizes={sizes ?? "(max-width: 768px) 66vw, 33vw"}
           priority={priority}
         />
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:px-6">
-        <div>
-          <div className="text-sm font-medium text-foreground md:text-base">
-            {project.title}
-          </div>
-          <div className="mt-1 text-xs text-accent md:text-sm">
-            {project.year}
-          </div>
-        </div>
-      </div>
-      <div className="pointer-events-none border-b border-border px-4 py-4 md:hidden">
-        <div className="text-sm font-medium">{project.title}</div>
-        <div className="mt-1 text-xs text-accent">{project.year}</div>
       </div>
     </article>
   );
@@ -95,30 +85,30 @@ export default function ProjectCover({
     <article className="py-12 first:pt-0 lg:border-t lg:border-border lg:py-0 lg:pt-4">
       <div className="grid grid-cols-12 gap-y-10 lg:gap-y-0">
         <div className="order-2 col-span-12 flex flex-col lg:order-1 lg:col-span-3">
-          <div className="mb-8 flex w-full items-start sm:mb-[39px] md:mb-10 lg:mb-0">
-            <Link
-              href={`/${project.slug}`}
-              className="transition-colors hover:text-accent"
-            >
-              <h3 className="text-2xl font-medium tracking-tight md:text-[1.75rem]">
+          <Link
+            href={`/${project.slug}`}
+            className="group flex w-full flex-col lg:h-full"
+          >
+            <div className="mb-8 flex w-full items-start sm:mb-[39px] md:mb-10 lg:mb-0">
+              <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-accent md:text-[1.75rem]">
                 {project.title}
               </h3>
-            </Link>
-          </div>
+            </div>
 
-          <div className="w-full max-w-[66ch] lg:mt-auto">
-            {project.excerpt ? (
-              <p className="text-lg font-medium leading-snug tracking-tight">
-                {project.excerpt}
-              </p>
-            ) : null}
+            <div className="w-full max-w-[66ch] lg:mt-auto">
+              {project.excerpt ? (
+                <p className="text-lg font-medium leading-snug tracking-tight">
+                  {project.excerpt}
+                </p>
+              ) : null}
 
-            {project.statistic ? (
-              <div className="pt-8 sm:pt-10 lg:pt-[41px] xl:pt-16">
-                <Statistic {...project.statistic} />
-              </div>
-            ) : null}
-          </div>
+              {project.statistic ? (
+                <div className="pt-8 sm:pt-10 lg:pt-[41px] xl:pt-16">
+                  <Statistic {...project.statistic} />
+                </div>
+              ) : null}
+            </div>
+          </Link>
         </div>
 
         <ProjectCoverImage

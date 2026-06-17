@@ -237,6 +237,10 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transition: none;
+  }
+
   .hero-ken-burns {
     animation: none;
   }
