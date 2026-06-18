@@ -23,8 +23,11 @@ export default function OnboardingSplash() {
 
     const start = performance.now();
     let frameId = 0;
+    let mounted = true;
 
     const tick = (now: number) => {
+      if (!mounted) return;
+
       const elapsed = now - start;
       const next = Math.min(100, Math.round((elapsed / DURATION_MS) * 100));
       setProgress(next);
@@ -33,8 +36,10 @@ export default function OnboardingSplash() {
         frameId = requestAnimationFrame(tick);
       } else {
         window.setTimeout(() => {
+          if (!mounted) return;
           setFadeOut(true);
           window.setTimeout(() => {
+            if (!mounted) return;
             setVisible(false);
             document.body.style.overflow = "";
           }, 500);
@@ -45,6 +50,7 @@ export default function OnboardingSplash() {
     frameId = requestAnimationFrame(tick);
 
     return () => {
+      mounted = false;
       cancelAnimationFrame(frameId);
       document.body.style.overflow = "";
     };

@@ -1,12 +1,12 @@
-import { getRelatedProjects } from "@/lib/projects";
+import { getRelatedPortfolios } from "@/lib/portfolios";
 import ProjectGrid from "@/components/work/ProjectGrid";
 
 type OtherProjectsProps = {
   slug: string;
 };
 
-export default function OtherProjects({ slug }: OtherProjectsProps) {
-  const related = getRelatedProjects(slug, 2);
+export default async function OtherProjects({ slug }: OtherProjectsProps) {
+  const related = await getRelatedPortfolios(slug, 2);
 
   if (related.length === 0) return null;
 
@@ -18,7 +18,7 @@ export default function OtherProjects({ slug }: OtherProjectsProps) {
         </h3>
       </div>
       <div className="mx-auto max-w-[1400px]">
-        <ProjectGrid projects={related} compact />
+        <ProjectGrid portfolios={related} compact />
       </div>
     </section>
   );

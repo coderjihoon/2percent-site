@@ -3,47 +3,47 @@ import { notFound } from "next/navigation";
 import BackToTop from "@/components/layout/BackToTop";
 import OtherProjects from "@/components/project/OtherProjects";
 import ProjectDetail from "@/components/project/ProjectDetail";
-import {
-  getAllSlugs,
-  getProjectBySlug,
-} from "@/lib/projects";
+import { getAllSlugs, getPortfolioBySlug } from "@/lib/portfolios";
 
-type ProjectPageProps = {
+type PortfolioPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
-}: ProjectPageProps): Promise<Metadata> {
+}: PortfolioPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const portfolio = await getPortfolioBySlug(slug);
 
-  if (!project) {
+  if (!portfolio) {
     return { title: "Not Found" };
   }
 
   return {
-    title: `${project.title} — 2percent`,
-    description: project.title,
+    title: `${portfolio.title} — 2percent`,
+    description: portfolio.description ?? portfolio.title,
   };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const portfolio = await getPortfolioBySlug(slug);
 
-  if (!project) {
+  if (!portfolio) {
     notFound();
   }
 
   return (
     <article>
-      <ProjectDetail project={project} />
-      <OtherProjects slug={project.slug} />
+      <ProjectDetail portfolio={portfolio} />
+      <OtherProjects slug={portfolio.slug} />
       <BackToTop />
     </article>
   );

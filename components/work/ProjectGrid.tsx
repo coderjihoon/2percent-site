@@ -1,19 +1,22 @@
-import type { Project } from "@/types/project";
+import type { Portfolio } from "@/types/portfolio";
 import ProjectCover from "./ProjectCover";
 
 type ProjectGridProps = {
-  projects: Project[];
+  portfolios: Portfolio[];
   compact?: boolean;
 };
 
-export default function ProjectGrid({ projects, compact = false }: ProjectGridProps) {
+export default function ProjectGrid({
+  portfolios,
+  compact = false,
+}: ProjectGridProps) {
   if (compact) {
     return (
       <section className="grid grid-cols-1 min-[541px]:grid-cols-2">
-        {projects.map((project, index) => (
+        {portfolios.map((portfolio, index) => (
           <ProjectCover
-            key={project.slug}
-            project={project}
+            key={portfolio.slug}
+            portfolio={portfolio}
             compact
             priority={index < 2}
           />
@@ -28,10 +31,10 @@ export default function ProjectGrid({ projects, compact = false }: ProjectGridPr
       className="mx-auto max-w-[1400px] px-6 pt-12 pb-16 md:px-10 md:pt-16 md:pb-24"
     >
       <div className="flex flex-col divide-y divide-border lg:divide-y-0 lg:gap-20">
-        {projects.map((project, index) => (
+        {portfolios.map((portfolio, index) => (
           <ProjectCover
-            key={project.slug}
-            project={project}
+            key={portfolio.slug}
+            portfolio={portfolio}
             priority={index < 2}
           />
         ))}
