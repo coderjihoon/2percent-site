@@ -78,8 +78,7 @@ export default function ContactPage() {
           your brand?
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground-muted md:mt-8 md:text-lg">
-          We are passionate about creating visually stunning and functional
-          solutions that communicate effectively.
+          단 2%, 고객에게 선택 받는 브랜드로 만듭니다.
         </p>
       </div>
 
