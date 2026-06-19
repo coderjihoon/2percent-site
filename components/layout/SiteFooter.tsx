@@ -16,16 +16,16 @@ export default function SiteFooter() {
               />
               이퍼센트 마케팅
             </li>
-            <li>(주)브랜드랩</li>
-            <li>대표 : 김철수</li>
-            <li>사업자등록번호 : 123-45-67890</li>
-            <li>서울특별시 강남구 테헤란로 123</li>
+            <li>(주)비에스브랜더</li>
+            <li>대표 : 김지환</li>
+            <li>사업자등록번호 : 402-87-03145</li>
+            <li>서울특별시 영등포구 영신로 166</li>
             <li>
               <a
-                href="mailto:hello@brandlab.co.kr"
+                href="mailto:bsbrander@gmail.com"
                 className="text-foreground-muted transition-colors hover:text-accent"
               >
-                hello@brandlab.co.kr
+                bsbrander@gmail.com
               </a>
             </li>
             <li className="copyright pt-2 text-foreground-subtle">
@@ -39,15 +39,12 @@ export default function SiteFooter() {
                 대표전화
               </span>
               <a
-                href="tel:+8225087871"
+                href="tel:010-4418-5438"
                 className="transition-colors hover:text-accent"
               >
-                +82 2 508 7871
+                010-4418-5438
               </a>
             </p>
-            <ul className="information__desc mt-2 space-y-1 text-xs text-foreground-muted">
-              <li>평일 10:00~17:00</li>
-            </ul>
           </nav>
         </div>
       </div>

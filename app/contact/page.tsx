@@ -8,15 +8,13 @@ export const metadata: Metadata = {
 
 const offices = [
   {
-    name: "Seoul Forest.(HQ)",
+    name: "2percent marketing",
     lines: [
-      "서울특별시 성동구 서울숲2길 32-14,",
-      "101동 202호(갤러리아포레)",
+      "서울특별시 영등포구 영신로 166",
     ],
     english: [
-      "101-201, 32-14, Seoulsup 2-gil, Seongdong-gu,",
+      "#166 Yeongsin-ro, Yeongdeungpo-gu",
       "Seoul, Korea",
-      "Zipcode 04769",
     ],
   },
 ] as const;
@@ -93,18 +91,18 @@ export default function ContactPage() {
             </h2>
             <div className="mt-8 space-y-5">
               <a
-                href="tel:+8225087871"
+                href="tel:010-4418-5438"
                 className="flex items-center gap-3 text-[15px] text-foreground transition-colors hover:text-accent"
               >
                 <PhoneIcon />
-                +82 2 508 7871 (REP)
+                010-4418-5438
               </a>
               <a
-                href="mailto:info@samseoul.com"
+                href="mailto:bsbrander@gmail.com"
                 className="flex items-center gap-3 text-[15px] text-foreground transition-colors hover:text-accent"
               >
                 <EmailIcon />
-                info@samseoul.com
+                bsbrander@gmail.com
               </a>
             </div>
           </section>
