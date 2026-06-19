@@ -39,10 +39,10 @@ export default function SiteFooter() {
                 대표전화
               </span>
               <a
-                href="tel:010-4418-5438"
+                href="tel:010-2840-1608"
                 className="transition-colors hover:text-accent"
               >
-                010-4418-5438
+                010-2840-1608
               </a>
             </p>
           </nav>

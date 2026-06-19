@@ -90,11 +90,11 @@ export default function ContactPage() {
             </h2>
             <div className="mt-8 space-y-5">
               <a
-                href="tel:010-4418-5438"
+                href="tel:010-2840-1608"
                 className="flex items-center gap-3 text-[15px] text-foreground transition-colors hover:text-accent"
               >
                 <PhoneIcon />
-                010-4418-5438
+                010-2840-1608
               </a>
               <a
                 href="mailto:bsbrander@gmail.com"
