@@ -70,7 +70,7 @@ export default function OnboardingSplash() {
         alt="이퍼센트"
         width={1024}
         height={258}
-        className="mb-10 h-7 w-auto md:h-9"
+        className="mb-5 h-7 w-auto md:h-9"
         priority
       />
 

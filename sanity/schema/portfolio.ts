@@ -58,6 +58,12 @@ export const portfolio = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "coverVideo",
+      title: "상세페이지 대표 영상",
+      type: "file",
+      options: { accept: "video/*" },
+    }),
+    defineField({
       name: "gallery",
       title: "상세 이미지",
       type: "array",

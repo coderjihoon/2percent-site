@@ -11,6 +11,9 @@ const portfolioFields = `{
   order,
   thumbnail,
   coverImage,
+  "coverVideo": coverVideo{
+    asset->
+  },
   gallery
 }`;
 

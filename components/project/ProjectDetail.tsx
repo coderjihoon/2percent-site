@@ -1,6 +1,7 @@
 import type { Portfolio } from "@/types/portfolio";
 import ImageModuleBlock from "./ImageModuleBlock";
 import StaticImageModule from "./StaticImageModule";
+import VideoModuleBlock from "./VideoModuleBlock";
 
 type ProjectDetailProps = {
   portfolio: Portfolio;
@@ -20,11 +21,16 @@ export default function ProjectDetail({ portfolio }: ProjectDetailProps) {
     .join(" · ");
 
   const tags = portfolio.category ?? [];
+  const heroVideo = portfolio.coverVideo;
 
   return (
     <>
       <div className="md:hidden">
-        <StaticImageModule module={coverModule} priority />
+        {heroVideo ? (
+          <VideoModuleBlock src={heroVideo} />
+        ) : (
+          <StaticImageModule module={coverModule} priority />
+        )}
       </div>
       <div className="post-content">
         <div className="content-wrap">
@@ -56,7 +62,11 @@ export default function ProjectDetail({ portfolio }: ProjectDetailProps) {
         </div>
         <div className="post-imgs-wrap">
           <div className="hidden md:contents">
-            <StaticImageModule module={coverModule} priority />
+            {heroVideo ? (
+              <VideoModuleBlock src={heroVideo} />
+            ) : (
+              <StaticImageModule module={coverModule} priority />
+            )}
             {portfolio.gallery.map((image, index) => (
               <figure
                 key={`${image.src}-${index}`}

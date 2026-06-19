@@ -10,6 +10,7 @@ export type Portfolio = {
   category?: string[];
   thumbnail: PortfolioImage;
   coverImage: PortfolioImage;
+  coverVideo?: string;
   gallery: PortfolioImage[];
   summary?: string;
   description?: string;

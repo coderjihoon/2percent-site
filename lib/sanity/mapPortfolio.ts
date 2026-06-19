@@ -1,7 +1,12 @@
 import type { Portfolio, PortfolioImage } from "@/types/portfolio";
+import { getFileUrl } from "./file";
 import { getImageUrl } from "./image";
 
 type SanityImage = Parameters<typeof getImageUrl>[0];
+
+type SanityFile = {
+  asset?: { url?: string };
+};
 
 export type SanityPortfolio = {
   slug: string;
@@ -16,6 +21,7 @@ export type SanityPortfolio = {
   order?: number;
   thumbnail?: SanityImage;
   coverImage?: SanityImage;
+  coverVideo?: SanityFile;
   gallery?: SanityImage[];
 };
 
@@ -50,6 +56,7 @@ export function mapSanityPortfolio(portfolio: SanityPortfolio): Portfolio {
     category: portfolio.category?.filter(Boolean),
     thumbnail,
     coverImage,
+    coverVideo: getFileUrl(portfolio.coverVideo),
     gallery,
     summary: portfolio.summary,
     description: portfolio.description,
