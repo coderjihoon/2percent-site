@@ -20,16 +20,16 @@ export default function ImageModuleBlock({ src, alt }: ImageModuleBlockProps) {
         onClick={() => setOpen(true)}
         aria-label="Open image in lightbox"
       >
-        <div className="relative aspect-video w-full bg-surface">
-          <Image
-            src={src}
-            alt={alt ?? ""}
-            fill
-            loading="lazy"
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          width={0}
+          height={0}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="h-auto w-full"
+          style={{ width: "100%", height: "auto" }}
+          loading="lazy"
+        />
       </button>
       <ImageLightbox
         src={src}
