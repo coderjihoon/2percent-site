@@ -25,14 +25,31 @@ export type SanityPortfolio = {
   gallery?: SanityImage[];
 };
 
+function hasImageAsset(
+  image: SanityImage | undefined,
+): image is SanityImage & { asset: NonNullable<unknown> } {
+  return Boolean(
+    image &&
+      typeof image === "object" &&
+      "asset" in image &&
+      image.asset,
+  );
+}
+
 function mapImage(
   image: SanityImage | undefined,
   fallbackAlt: string,
 ): PortfolioImage | undefined {
-  const src = getImageUrl(image);
-  if (!src) return undefined;
+  if (!hasImageAsset(image)) return undefined;
 
-  return { src, alt: fallbackAlt };
+  try {
+    const src = getImageUrl(image);
+    if (!src) return undefined;
+
+    return { src, alt: fallbackAlt };
+  } catch {
+    return undefined;
+  }
 }
 
 export function mapSanityPortfolio(portfolio: SanityPortfolio): Portfolio {

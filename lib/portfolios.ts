@@ -22,13 +22,23 @@ function sortPortfolios(portfolios: Portfolio[]): Portfolio[] {
 }
 
 async function fetchPortfoliosFromSanity(): Promise<Portfolio[]> {
-  const portfolios = await sanityClient.fetch<SanityPortfolio[]>(
+  const raw = await sanityClient.fetch<SanityPortfolio[]>(
     portfoliosQuery,
     {},
     { next: { tags: ["portfolios"] } },
   );
 
-  return portfolios.map(mapSanityPortfolio);
+  const portfolios: Portfolio[] = [];
+
+  for (const item of raw) {
+    try {
+      portfolios.push(mapSanityPortfolio(item));
+    } catch (error) {
+      console.error(`Skipping portfolio "${item.slug}":`, error);
+    }
+  }
+
+  return portfolios;
 }
 
 export async function getAllPortfolios(): Promise<Portfolio[]> {

@@ -22,12 +22,13 @@ export default function ProjectDetail({ portfolio }: ProjectDetailProps) {
 
   const tags = portfolio.category ?? [];
   const heroVideo = portfolio.coverVideo;
+  const videoPoster = portfolio.coverImage.src;
 
   return (
     <>
       <div className="md:hidden">
         {heroVideo ? (
-          <VideoModuleBlock src={heroVideo} />
+          <VideoModuleBlock src={heroVideo} poster={videoPoster} />
         ) : (
           <StaticImageModule module={coverModule} priority />
         )}
@@ -63,7 +64,7 @@ export default function ProjectDetail({ portfolio }: ProjectDetailProps) {
         <div className="post-imgs-wrap">
           <div className="hidden md:contents">
             {heroVideo ? (
-              <VideoModuleBlock src={heroVideo} />
+              <VideoModuleBlock src={heroVideo} poster={videoPoster} />
             ) : (
               <StaticImageModule module={coverModule} priority />
             )}

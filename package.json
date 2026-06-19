@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "compress-video": "bash scripts/compress-video.sh"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",

@@ -61,7 +61,9 @@ export const portfolio = defineType({
       name: "coverVideo",
       title: "상세페이지 대표 영상",
       type: "file",
-      options: { accept: "video/*" },
+      description:
+        "MP4 권장. 업로드 전 1080p·20MB 이하로 압축해 주세요. 터미널: npm run compress-video -- input.mp4",
+      options: { accept: "video/mp4,video/quicktime" },
     }),
     defineField({
       name: "gallery",

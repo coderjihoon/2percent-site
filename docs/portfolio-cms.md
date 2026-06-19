@@ -32,7 +32,7 @@
 | `category` | 카테고리 | 다중 선택 |
 | `thumbnail` | 리스트용 썸네일 | `/work` 목록 이미지 |
 | `coverImage` | 상세페이지 대표 이미지 | 상세 히어로 이미지 (영상 없을 때) |
-| `coverVideo` | 상세페이지 대표 영상 | 상세 맨 위 영상 (선택, MP4) |
+| `coverVideo` | 상세페이지 대표 영상 | 상세 맨 위 영상 (선택, MP4·업로드 전 압축 권장) |
 | `gallery` | 상세 이미지 | 상세 갤러리 (라이트박스) |
 | `summary` | 메인페이지 설명 | `/work` 목록에만 표시 |
 | `description` | 상세 설명 | 상세 페이지 본문 |
@@ -96,6 +96,8 @@
 - 카테고리: pill 태그 버튼 (`h-7` 고정 높이, `post-text` 클래스 미사용)
 - `summary`는 목록 전용, 상세에는 `description`만 표시
 - `coverVideo`가 있으면 상세 맨 위에 영상 표시, 없으면 `coverImage` 표시
+- 영상은 `preload="none"` + `coverImage`를 poster로 사용 (페이지 로드 시 전체 영상 다운로드 방지)
+- 업로드 전 압축: `npm run compress-video -- input.mp4` (ffmpeg 필요)
 
 ### Studio (`/studio`)
 
@@ -175,3 +177,14 @@ SANITY_REVALIDATE_SECRET=랜덤_문자열
 - Next.js 16 (App Router)
 - Sanity 5 + next-sanity
 - TypeScript, Tailwind CSS 4
+
+---
+
+## 9. 트러블슈팅
+
+### `/work` 목록이 비어 있을 때
+
+1. Sanity Studio에서 포트폴리오 **Publish** 상태 확인 (`isPublished`)
+2. **상세 이미지(gallery)** 에 asset 없는 빈 슬롯이 없는지 확인 (이미지 추가 후 파일 미업로드 시 전체 목록이 사라질 수 있음 — 코드 수정 후에는 해당 항목만 skip)
+3. Vercel 환경 변수 `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` 확인
+4. 배포 후 1~2분 대기(ISR) 또는 Vercel Redeploy
